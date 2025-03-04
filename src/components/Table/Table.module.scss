@@ -1,0 +1,57 @@
+@use "../../styles/variables" as *;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: Arial, sans-serif;
+  table-layout: fixed;
+}
+
+.tableHeader {
+  background-color: $blue-primary;
+  color: $blue-10;
+  text-align: left;
+  font-weight: 500;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+}
+
+.tableHeader th {
+  padding: 12px;
+  height: 47px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tableRow td:first-of-type,
+.tableHeader th:first-of-type {
+  padding: 0 2em;
+  width: 12%;
+}
+
+.tableRow {
+  height: 49px;
+  box-shadow: $box-shadow-01;
+}
+
+.tableRow td {
+  padding: 10px 6px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tableRow td:not(:first-of-type) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tableHeader th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.tableHeader th:last-child {
+  border-top-right-radius: 8px;
+}

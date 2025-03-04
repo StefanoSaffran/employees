@@ -1,0 +1,62 @@
+@use "../../styles/variables" as *;
+
+.container {
+  header {
+    width: 100%;
+    height: 60px;
+    background: $white;
+    display: flex;
+    box-shadow: $box-shadow-03;
+
+    svg {
+      margin: auto 16px;
+    }
+  }
+
+  .content {
+    margin: 2em;
+  }
+
+  .titleAndSearchContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2em;
+    font-family: $secondary-font;
+
+    h1 {
+      font-size: 20px;
+      line-height: 24.5px;
+    }
+
+    >div {
+      position: relative;
+
+      svg {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+      }
+
+      input {
+        height: 48px;
+        width: 287px;
+
+        padding: 0 40px 0 16px;
+        border: 1px solid $gray-10;
+        border-radius: 8px;
+        font-family: $secondary-font;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 19px;
+
+      }
+    }
+  }
+
+  .icon {
+    path {
+      fill: $gray-10 !important;
+    }
+  }
+}
