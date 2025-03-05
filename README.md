@@ -40,7 +40,7 @@ To run the application you will need:
 ```bash
 # to clone the repository
 $ git clone https://github.com/StefanoSaffran/employees.git
-$ cd frontend
+$ cd employees
 # install dependencies
 $ yarn
 # run
