@@ -55,3 +55,84 @@
 .tableHeader th:last-child {
   border-top-right-radius: 8px;
 }
+
+.mobileHeader {
+  display: flex;
+  align-items: center;
+  height: 47px;
+  background: $blue-primary;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  >div {
+    font-family: $secondary-font;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: $white;
+
+    span+span {
+      margin-left: 1.5rem;
+    }
+  }
+
+  .mobileHeaderIcon {
+    width: 8px;
+    height: 8px;
+    margin-right: 12px;
+  }
+}
+
+.accordion {
+  background: $white;
+
+  .accordionItemButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 60px;
+
+    >div {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+
+      span {
+        margin-left: 2rem;
+      }
+    }
+
+    &[aria-expanded="true"] {
+      .accordionIcon {
+        transform: rotate(180deg);
+      }
+    }
+
+    .accordionIcon {
+      margin-right: 4px;
+
+      path {
+        stroke: $blue-primary;
+      }
+    }
+  }
+
+  .accordionItemPanel {
+    padding: 2rem 1rem;
+
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed $gray-10;
+      white-space: nowrap;
+    }
+
+    p+p {
+      margin-top: 1rem
+    }
+  }
+}

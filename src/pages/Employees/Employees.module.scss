@@ -14,14 +14,19 @@
   }
 
   .content {
-    margin: 2em;
+    margin: 2rem;
+
+    @media screen and (max-width: 768px) {
+      margin: 1.25rem;
+
+    }
   }
 
   .titleAndSearchContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2em;
+    margin-bottom: 2rem;
     font-family: $secondary-font;
 
     h1 {
@@ -50,6 +55,23 @@
         font-size: 16px;
         line-height: 19px;
 
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 1.25rem;
+      flex-direction: column;
+
+      h1 {
+        margin-bottom: 1.5rem;
+      }
+
+      >div {
+        width: 100%;
+
+        input {
+          width: 100%;
+        }
       }
     }
   }
