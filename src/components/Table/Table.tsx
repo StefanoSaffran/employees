@@ -1,11 +1,13 @@
 import { useTable } from 'react-table';
+import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion';
 
 import { Employee } from '../../hooks';
-import { Accordion, AccordionItem, AccordionItemButton, AccordionItemHeading, AccordionItemPanel } from 'react-accessible-accordion';
-import styles from "./Table.module.scss";
-import 'react-accessible-accordion/dist/fancy-example.css';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import { formatDate, formatPhone } from '../../utils';
 import { Icon } from '../Icon';
+import styles from "./Table.module.scss";
+
+import 'react-accessible-accordion/dist/fancy-example.css';
 
 const columns = [
   {
@@ -24,10 +26,12 @@ const columns = [
   {
     Header: 'DATA DE ADMISSÃO',
     accessor: 'admission_date',
+    Cell: ({ value }: { value: string }) => formatDate(value)
   },
   {
     Header: 'TELEFONE',
     accessor: 'phone',
+    Cell: ({ value }: { value: string }) => formatPhone(value),
   },
 ];
 
@@ -45,7 +49,7 @@ export const Table = ({ data, loading, error }: TableProps) => {
 
   return (
     isMobile ? (
-      <div>
+      <div className={styles.accordionContainer}>
         <div className={styles.mobileHeader}>
           <div>
             <span>FOTO</span>
@@ -69,8 +73,8 @@ export const Table = ({ data, loading, error }: TableProps) => {
 
               <AccordionItemPanel className={styles.accordionItemPanel}>
                 <p><strong>Cargo:</strong> {row.job}</p>
-                <p><strong>Admissão:</strong> {row.admission_date}</p>
-                <p><strong>Telefone:</strong> {row.phone}</p>
+                <p><strong>Data de admissão:</strong> {formatDate(row.admission_date)}</p>
+                <p><strong>Telefone:</strong> {formatPhone(row.phone)}</p>
               </AccordionItemPanel>
             </AccordionItem>
           ))}
@@ -78,51 +82,53 @@ export const Table = ({ data, loading, error }: TableProps) => {
       </div>
     )
       : (
-        <table {...getTableProps()} className={styles.table}>
-          <thead className={styles.tableHeader}>
-            {headerGroups.map(headerGroup => (
-              <tr
-                {...headerGroup.getHeaderGroupProps()}
-                key={headerGroup.Header as string}
-              >
-                {headerGroup.headers.map(column => (
-                  <th
-                    {...column.getHeaderProps()}
-                    key={column.Header as string}
-                    title={column.Header as string}
-                  >
-                    {column.render('Header')}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map(row => {
-              prepareRow(row);
-              const { key, ...otherProps } = row.getRowProps();
-              return (
+        <div className={styles.tableContainer}>
+          <table {...getTableProps()} className={styles.table}>
+            <thead className={styles.tableHeader}>
+              {headerGroups.map(headerGroup => (
                 <tr
-                  {...otherProps}
-                  className={styles.tableRow}
-                  key={key}
+                  {...headerGroup.getHeaderGroupProps()}
+                  key={headerGroup.Header as string}
                 >
-                  {row.cells.map((cell) => {
-                    const { key, ...otherProps } = cell.getCellProps();
-                    return (
-                      <td
-                        {...otherProps}
-                        title={cell.value}
-                        key={key}
-                      >
-                        {cell.render("Cell")}</td>
-                    )
-                  })}
+                  {headerGroup.headers.map(column => (
+                    <th
+                      {...column.getHeaderProps()}
+                      key={column.Header as string}
+                      title={column.Header as string}
+                    >
+                      {column.render('Header')}
+                    </th>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map(row => {
+                prepareRow(row);
+                const { key, ...otherProps } = row.getRowProps();
+                return (
+                  <tr
+                    {...otherProps}
+                    className={styles.tableRow}
+                    key={key}
+                  >
+                    {row.cells.map((cell) => {
+                      const { key, ...otherProps } = cell.getCellProps();
+                      return (
+                        <td
+                          {...otherProps}
+                          title={cell.value}
+                          key={key}
+                        >
+                          {cell.render("Cell")}</td>
+                      )
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       )
   )
 };

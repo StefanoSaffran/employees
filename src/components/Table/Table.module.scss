@@ -1,11 +1,18 @@
 @use "../../styles/variables" as *;
 
+.tableContainer {
+  max-height: calc(100vh - 60px - 32px - 48px - 32px - 32px);
+  height: 100%;
+  overflow-y: auto;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  font-family: Arial, sans-serif;
+  font-family: $primary-font;
   table-layout: fixed;
+  background: $white;
 }
 
 .tableHeader {
@@ -15,6 +22,9 @@
   font-weight: 500;
   border-radius: 8px 8px 0 0;
   overflow: hidden;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .tableHeader th {
@@ -34,6 +44,7 @@
 .tableRow {
   height: 49px;
   box-shadow: $box-shadow-01;
+  border-bottom: 0.5px solid #00000001;
 }
 
 .tableRow td {
@@ -67,7 +78,7 @@
   border-top-right-radius: 8px;
 
   >div {
-    font-family: $secondary-font;
+    font-family: $primary-font;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
@@ -83,6 +94,10 @@
     height: 8px;
     margin-right: 12px;
   }
+}
+
+.accordionContainer {
+  padding-bottom: 2rem;
 }
 
 .accordion {
